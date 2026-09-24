@@ -6,7 +6,7 @@ export const ContactSection: React.FC = () => {
   const [messageSent, setMessageSent] = useState(false);
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
 
-  const email = 'hello@atabria.dev';
+  const email = 'atabria.dev@gmail.com';
 
   const copyEmail = () => {
     navigator.clipboard.writeText(email);

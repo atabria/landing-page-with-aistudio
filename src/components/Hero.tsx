@@ -13,7 +13,7 @@ export const Hero: React.FC = () => {
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#4f3886]/15 blur-[120px] rounded-full" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Top metadata strip */}
+        {/* Top metadata strip
         <div className="flex flex-wrap items-center justify-between border-b border-[#383244]/60 pb-4 text-xs tracking-widest text-[#b59df2]/90 uppercase font-mono">
           <div className="flex items-center gap-3">
             <span className="inline-block h-2 w-2 rounded-full bg-[#d0bcff] animate-pulse" />
@@ -25,7 +25,7 @@ export const Hero: React.FC = () => {
           <div className="text-right">
             Active Status: Available for Roles
           </div>
-        </div>
+        </div> */}
 
         {/* Massive Display Title with Rotating Starburst Doodle */}
         <div className="relative mt-8 sm:mt-12">
@@ -53,9 +53,9 @@ export const Hero: React.FC = () => {
                   <path d="M 22 78 L 78 22" />
                   <circle cx="50" cy="50" r="28" strokeDasharray="3 3" strokeWidth="1.2" opacity="0.6" />
                 </svg>
-                <div className="absolute text-[10px] font-mono uppercase tracking-widest text-[#d0bcff]/70 text-center">
+                {/*<div className="absolute text-[10px] font-mono uppercase tracking-widest text-[#d0bcff]/70 text-center">
                   Lab • 2025
-                </div>
+                </div>*/}
               </div>
             </div>
           </div>
