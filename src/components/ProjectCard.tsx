@@ -5,10 +5,18 @@ import { ExternalLink, Play, Sparkles } from 'lucide-react';
 interface ProjectCardProps {
   project: ProjectItem;
   onOpenScreen: (screenId: ScreenId) => void;
+  searchQuery?: string;
+  onTagClick?: (tag: string) => void;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenScreen }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({
+  project,
+  onOpenScreen,
+  searchQuery = '',
+  onTagClick,
+}) => {
   const isEven = project.inverted;
+  const cleanQuery = searchQuery.trim().toLowerCase();
 
   return (
     <article
@@ -70,15 +78,26 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenScreen 
 
             {/* Technologies tags */}
             <div className="mt-6 flex flex-wrap gap-1.5">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-md border border-[#383244] bg-[#231d2e] px-2.5 py-1 text-[11px] font-mono text-[#c7c6cb]"
-                >
-                  {tag}
-                </span>
-              ))}
+              {project.tags.map((tag) => {
+                const isMatched = cleanQuery && tag.toLowerCase().includes(cleanQuery);
+                return (
+                  <button
+                    key={tag}
+                    onClick={() => onTagClick?.(tag)}
+                    type="button"
+                    title={`Filter projects by ${tag}`}
+                    className={`rounded-md border px-2.5 py-1 text-[11px] font-mono transition-all ${
+                      isMatched
+                        ? 'border-[#d0bcff] bg-[#4f3886] text-white font-semibold shadow-[0_0_12px_rgba(208,188,255,0.4)] scale-105'
+                        : 'border-[#383244] bg-[#231d2e] text-[#c7c6cb] hover:border-[#b59df2]/60 hover:text-white'
+                    }`}
+                  >
+                    {tag}
+                  </button>
+                );
+              })}
             </div>
+
           </div>
 
           {/* Action Row */}

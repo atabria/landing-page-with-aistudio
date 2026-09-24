@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ScreenId } from './types';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -16,12 +16,13 @@ import { GenGeoScreen } from './screens/GenGeoScreen';
 import { VersoPoetryScreen } from './screens/VersoPoetryScreen';
 import { SonicHabitatsScreen } from './screens/SonicHabitatsScreen';
 import { PROJECTS_DATA } from './data/projectsData';
-import { Filter, Layers, Sparkles } from 'lucide-react';
+import { Filter, Layers, Sparkles, Search, X, RotateCcw } from 'lucide-react';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<ScreenId>('portfolio');
   const [isLabMode, setIsLabMode] = useState<boolean>(false);
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   const categories = [
     { id: 'all', label: 'All Works (06)' },
@@ -33,9 +34,40 @@ export default function App() {
     { id: 'Acoustic Ecology', label: 'Acoustics' },
   ];
 
-  const filteredProjects = activeCategory === 'all'
-    ? PROJECTS_DATA
-    : PROJECTS_DATA.filter((p) => p.category === activeCategory);
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+
+  // Real-time filtering across title, subtitle, description, category, tags & preview name
+  const { filteredProjects, totalMatchesAcrossAll } = useMemo(() => {
+    const matchesAllList = normalizedQuery
+      ? PROJECTS_DATA.filter((p) => {
+          const matchTitle = p.title.toLowerCase().includes(normalizedQuery);
+          const matchSubtitle = p.subtitle.toLowerCase().includes(normalizedQuery);
+          const matchDesc = p.description.toLowerCase().includes(normalizedQuery);
+          const matchCat = p.category.toLowerCase().includes(normalizedQuery);
+          const matchNum = p.number.toLowerCase().includes(normalizedQuery);
+          const matchPreview = p.previewName.toLowerCase().includes(normalizedQuery);
+          const matchTag = p.tags.some((tag) => tag.toLowerCase().includes(normalizedQuery));
+
+          return matchTitle || matchSubtitle || matchDesc || matchCat || matchNum || matchPreview || matchTag;
+        })
+      : PROJECTS_DATA;
+
+    const filtered = matchesAllList.filter((p) =>
+      activeCategory === 'all' ? true : p.category === activeCategory
+    );
+
+    return {
+      filteredProjects: filtered,
+      totalMatchesAcrossAll: matchesAllList.length,
+    };
+  }, [normalizedQuery, activeCategory]);
+
+  const handleTagClick = (tag: string) => {
+    setSearchQuery(tag);
+    if (isLabMode) setIsLabMode(false);
+    // Smooth scroll to projects
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   // Screen configuration details for window chrome
   const screenDetails: Record<ScreenId, { title: string; url: string }> = {
@@ -88,6 +120,13 @@ export default function App() {
             onSelectScreen={setCurrentScreen}
             isLabMode={isLabMode}
             onToggleLabMode={() => setIsLabMode(!isLabMode)}
+            searchQuery={searchQuery}
+            onSearchChange={(q) => {
+              setSearchQuery(q);
+              if (isLabMode) setIsLabMode(false);
+            }}
+            filteredCount={filteredProjects.length}
+            totalCount={PROJECTS_DATA.length}
           />
 
           <main className="flex-1">
@@ -101,7 +140,7 @@ export default function App() {
                   <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-[#d0bcff]">
                     <span>01 // Selected Works</span>
                     <span className="text-[#46464b]">•</span>
-                    <span>{isLabMode ? 'Catalog 00 — 00' : 'Catalog 01 — 06'}</span>
+                    <span>{isLabMode ? 'Catalog 00 — 00' : `Catalog 01 — 0${filteredProjects.length}`}</span>
                   </div>
 
                   <div className="mt-2 sm:mt-0 flex items-center gap-3">
@@ -123,8 +162,8 @@ export default function App() {
                   />
                 ) : (
                   <>
-                    {/* Category Filter Pills */}
-                    <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+                    {/* Category Filter Pills & Search Status Bar */}
+                    <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div className="flex flex-wrap items-center gap-2">
                         <span className="flex items-center gap-1.5 text-xs font-mono text-[#919095] mr-2">
                           <Filter className="h-3.5 w-3.5" /> Filter:
@@ -145,20 +184,130 @@ export default function App() {
                       </div>
 
                       <div className="text-xs font-mono text-[#919095]">
-                        Live Screen Previews Available for all 6 Projects
+                        {searchQuery ? (
+                          <span className="text-[#d0bcff]">
+                            {filteredProjects.length} of {PROJECTS_DATA.length} projects matched
+                          </span>
+                        ) : (
+                          'Live Screen Previews Available for all 6 Projects'
+                        )}
                       </div>
                     </div>
 
-                    {/* Responsive Asymmetric Project Cards (matching Image 7) */}
-                    <div className="mt-10 space-y-12">
-                      {filteredProjects.map((project) => (
-                        <ProjectCard
-                          key={project.id}
-                          project={project}
-                          onOpenScreen={setCurrentScreen}
-                        />
-                      ))}
-                    </div>
+                    {/* Active Search Filter Ribbon (When Search Query is Active) */}
+                    {searchQuery && (
+                      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#4f3886]/60 bg-[#1e1929] px-4 py-3 text-xs">
+                        <div className="flex items-center gap-2.5">
+                          <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[#4f3886] text-[#d0bcff]">
+                            <Search className="h-3.5 w-3.5" />
+                          </div>
+                          <span className="font-mono text-[#c7c6cb]">
+                            Active Search Filter:
+                          </span>
+                          <span className="rounded-md bg-[#4f3886]/40 px-2 py-0.5 font-mono font-bold text-white border border-[#b59df2]/40">
+                            "{searchQuery}"
+                          </span>
+                          <span className="font-mono text-[#919095]">
+                            ({filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'} found)
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          {activeCategory !== 'all' && totalMatchesAcrossAll > filteredProjects.length && (
+                            <button
+                              onClick={() => setActiveCategory('all')}
+                              className="rounded-lg bg-[#231d2e] border border-[#383244] px-2.5 py-1 text-xs font-mono text-[#d0bcff] hover:text-white transition-colors"
+                            >
+                              Show {totalMatchesAcrossAll} in All Categories
+                            </button>
+                          )}
+
+                          <button
+                            onClick={() => setSearchQuery('')}
+                            className="flex items-center gap-1.5 rounded-lg bg-[#231d2e] border border-[#383244] px-2.5 py-1 text-xs font-mono text-[#919095] hover:text-white hover:border-[#b59df2]/50 transition-colors"
+                          >
+                            <X className="h-3.5 w-3.5" />
+                            <span>Clear Filter</span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Project Cards or Empty Search State */}
+                    {filteredProjects.length > 0 ? (
+                      <div className="mt-10 space-y-12">
+                        {filteredProjects.map((project) => (
+                          <ProjectCard
+                            key={project.id}
+                            project={project}
+                            onOpenScreen={setCurrentScreen}
+                            searchQuery={searchQuery}
+                            onTagClick={handleTagClick}
+                          />
+                        ))}
+                      </div>
+                    ) : (
+                      /* No Results Found State */
+                      <div className="mt-12 rounded-2xl border border-dashed border-[#46464b] bg-[#1a1426]/60 p-8 sm:p-14 text-center">
+                        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#231d2e] border border-[#383244] text-[#b59df2]">
+                          <Search className="h-6 w-6 opacity-60" />
+                        </div>
+
+                        <h3 className="mt-4 font-anton text-2xl uppercase tracking-wide text-white">
+                          No Projects Match "{searchQuery}"
+                        </h3>
+
+                        {activeCategory !== 'all' && totalMatchesAcrossAll > 0 ? (
+                          <p className="mt-2 text-xs sm:text-sm text-[#c7c6cb]">
+                            No matches found in the <span className="font-semibold text-white">"{activeCategory}"</span> category, but{' '}
+                            <span className="font-semibold text-[#d0bcff]">{totalMatchesAcrossAll}</span> matching projects exist across other disciplines.
+                          </p>
+                        ) : (
+                          <p className="mt-2 text-xs sm:text-sm text-[#919095] max-w-md mx-auto">
+                            We couldn't find any projects or tech stack matching your keyword. Try one of the suggested technologies below.
+                          </p>
+                        )}
+
+                        {/* Suggested stack buttons */}
+                        <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+                          <span className="text-xs font-mono text-[#919095] mr-1">Try Stack:</span>
+                          {['TypeScript', 'WebGL', 'React', 'GLSL', 'Web Audio', 'Tailwind', 'Next.js'].map((tag) => (
+                            <button
+                              key={tag}
+                              onClick={() => {
+                                setSearchQuery(tag);
+                                setActiveCategory('all');
+                              }}
+                              className="rounded-lg border border-[#383244] bg-[#231d2e] px-3 py-1.5 text-xs font-mono text-[#d0bcff] hover:border-[#b59df2] hover:bg-[#4f3886]/40 transition-colors"
+                            >
+                              {tag}
+                            </button>
+                          ))}
+                        </div>
+
+                        <div className="mt-8 flex justify-center gap-3">
+                          {activeCategory !== 'all' && totalMatchesAcrossAll > 0 && (
+                            <button
+                              onClick={() => setActiveCategory('all')}
+                              className="flex items-center gap-2 rounded-xl bg-[#d0bcff] px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#161021] hover:bg-white transition-colors"
+                            >
+                              <span>View All {totalMatchesAcrossAll} Matches</span>
+                            </button>
+                          )}
+
+                          <button
+                            onClick={() => {
+                              setSearchQuery('');
+                              setActiveCategory('all');
+                            }}
+                            className="flex items-center gap-1.5 rounded-xl border border-[#46464b] bg-[#231d2e] px-4 py-2.5 text-xs font-medium text-white hover:bg-[#383244] transition-colors"
+                          >
+                            <RotateCcw className="h-3.5 w-3.5" />
+                            <span>Reset All Filters</span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </>
                 )}
               </div>
