@@ -1,0 +1,98 @@
+Prompt 2: Landing Page — Empty State
+
+Using the existing Atabria portfolio design you just created, create a second version of the same landing page representing the "empty projects" state.
+
+IMPORTANT:
+Do NOT redesign the website from scratch.
+
+Keep the same:
+- Visual identity
+- Color palette
+- Typography
+- Layout system
+- Spacing
+- Hero
+- About section
+- Contact section
+- Footer
+- Navigation
+- Responsive behavior
+- Animation language
+- Overall art direction
+
+The only major change should be the PROJECTS section.
+
+EMPTY PROJECTS STATE
+
+At this stage, Atabria does not have any published projects yet.
+
+Replace the existing project list with a carefully designed empty state.
+
+Display the message:
+
+"No projects yet. I'm building something."
+
+The empty state should feel intentional and confident, not like an error message or unfinished website.
+
+It should communicate that the portfolio is currently being built and that projects will appear here in the future.
+
+VISUAL DIRECTION
+
+Keep the empty state minimal.
+
+Use the same #f4f2f7 background, #262031 typography, #b59df2 accent, and #5e536f secondary color.
+
+Consider using a subtle abstract doodle, small animated shape, or minimal visual metaphor around the message.
+
+The visual should feel like part of the Atabria identity rather than a generic empty-state illustration.
+
+Do NOT use:
+- Generic folder icons
+- Empty database illustrations
+- Large sad illustrations
+- Generic SaaS empty-state patterns
+- Stock illustrations
+- Excessive decorative elements
+
+The empty projects section should have enough visual presence to feel designed, but it should remain significantly simpler than the populated project state.
+
+LAYOUT
+
+Maintain the same Projects section heading and general spacing used in the populated version.
+
+Instead of project cards, create one centered or editorially composed empty state containing:
+
+"No projects yet. I'm building something."
+
+Optionally include a very subtle animated visual element that suggests movement, experimentation, or construction.
+
+Do not add fake projects, placeholder project cards, technology tags, fake links, or unnecessary calls to action.
+
+TRANSITION
+
+The transition from the populated state to the empty state should feel intentional.
+
+Use the same subtle animation language established in the first version.
+
+If appropriate, design the empty state so that the visual difference between "projects exist" and "projects are being built" feels like a natural state of the same website.
+
+RESPONSIVE
+
+Ensure the empty state works beautifully on:
+- Desktop
+- Tablet
+- Mobile
+
+On mobile, preserve the visual hierarchy and generous whitespace.
+
+FINAL GOAL
+
+This should look like the exact same Atabria portfolio at an earlier point in its journey:
+
+Atabria exists.
+The portfolio exists.
+The brand exists.
+The projects are simply not published yet.
+
+Keep everything else unchanged.
+

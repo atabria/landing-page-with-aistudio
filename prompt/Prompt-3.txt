@@ -1,0 +1,19 @@
+Prompt 3: Mobile Version
+
+Create the mobile version of the existing Atabria portfolio design.
+
+Keep the same visual identity, colors, typography, content, sections, and overall style.
+
+Optimize the layout specifically for mobile screens:
+- Responsive mobile layout
+- Simple mobile navigation
+- Strong typography hierarchy
+- Projects remain the main focus
+- Project images remain prominent
+- Clear YouTube, GitHub, and Live Preview links
+- Comfortable spacing and readable text
+- Preserve subtle hover/interaction ideas where appropriate for touch
+- Keep the animations subtle
+- Keep the doodles minimal
+
+Do not redesign the website. Adapt the existing desktop design into a polished mobile experience.

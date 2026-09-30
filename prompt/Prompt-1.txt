@@ -1,0 +1,229 @@
+Prompt: Landing Page — With Projects
+
+Design and build a responsive personal portfolio landing page for a creative developer brand called "Atabria".
+
+Atabria represents a frontend developer with a strong interest in UX/UI design. The website will also serve as the portfolio behind a YouTube channel where the creator documents their progress building frontend and UX/UI projects.
+
+The website should feel like a professional portfolio, but NOT like a typical developer portfolio.
+
+IMPORTANT:
+- Keep the design modern, minimal, lightweight, and visually refined.
+- Avoid an overly "tech" aesthetic.
+- Do not use gradients, neon colors, glassmorphism, excessive cards, terminal/code visuals, circuit patterns, or futuristic UI.
+- Do not make the website feel like a SaaS landing page.
+- Use generous whitespace and strong typography.
+- The overall feeling should be: modern, creative, calm, minimal, intentional, and slightly editorial.
+- Small hand-drawn doodles can be used as subtle decorative elements, but they should never distract from the content.
+- The page must feel like a real portfolio that could be used when applying for we development / frontend development / UX/UI positions.
+
+BRAND
+Brand name: Atabria 
+Moto: Let’s make something with code. 
+
+Logo typography: Anton
+
+Use Anton primarily for the Atabria logo and major display headings.
+
+Color palette:
+- Primary: #f4f2f7
+- Secondary: #b59df2
+- Tertiary: #5e536f
+- Neutral: #262031
+
+Use a dark mode with this color palette.
+
+Typography:
+Use Anton for the logo and selected large headings.
+Pair it with one or two clean, highly readable sans-serif fonts for body text, navigation, descriptions, buttons, and metadata.
+Create clear typographic contrast without making the page feel overly designed.
+
+PAGE STRUCTURE
+
+1. HERO
+
+The first screen should immediately establish Atabria and what it represents.
+
+Display: Atabria
+Frontend Developer & UX/UI Designer
+
+Keep this section simple and spacious.
+
+Do not add unnecessary paragraphs, statistics, social links, skill lists, or decorative information.
+
+Include a subtle visual element, such as a small abstract animated doodle or geometric hand-drawn shape, to give the brand personality without using a photograph.
+
+The hero should create a strong visual first impression while remaining minimal.
+
+2. PROJECTS — PRIMARY SECTION
+
+This is the most important section of the entire website.
+
+Projects should receive significantly more visual attention than the About or Contact sections.
+
+Show the 6 most recent projects.
+
+Each project must contain:
+
+- Project name
+- Short description
+- Project image / preview
+- Technologies used
+- Links
+
+Each project should have three clearly identifiable actions:
+
+YouTube
+GitHub
+Live Preview
+
+The links should be visually integrated into the project component without overwhelming the project image or description.
+
+Project images should be prominent and high quality.
+
+Use realistic placeholder projects and placeholder project images to demonstrate the intended layout.
+
+Example project content can be used only as visual placeholder content. Keep descriptions short and focused.
+
+The project component should communicate:
+1. What the project is
+2. What it looks like
+3. What technologies were used
+4. Where the visitor can explore it
+
+Do not add unnecessary information such as project dates, team size, client information, statistics, testimonials, or long case-study sections.
+
+PROJECT LAYOUT
+
+Explore a modern editorial layout rather than a generic grid of identical cards.
+
+Projects can alternate between layouts or use a clean asymmetric composition while maintaining visual consistency.
+
+For example:
+- Large project preview
+- Project title and description
+- Technology tags
+- Three compact action links
+
+The layout should create visual rhythm while remaining minimal.
+
+If there are more than 6 projects, include a simple "View all projects" action after the sixth project.
+
+3. ABOUT
+
+Keep the About section intentionally small.
+
+Use this copy:
+
+"Designing, building, and learning in public.
+
+Atabria is my ongoing journey through frontend development and UX/UI, turning ideas into functional and thoughtful digital experiences."
+
+Do not include:
+- Name
+- Age
+- Location
+- Photograph
+- Personal biography
+- Education
+- Personal social media
+- Any identifying information
+
+The visual treatment should reinforce that Atabria is the public creative identity.
+
+Include one subtle abstract doodle or animated visual element instead of a portrait.
+
+4. CONTACT
+
+Keep the Contact section simple and secondary to the projects.
+Use a minimal invitation such as:
+"Have a project or opportunity in mind?"
+Include a simple email/contact action using placeholder contact information.
+Do not make this section large or form-heavy.
+The goal is simply to provide a professional way to get in touch.
+
+5. FOOTER
+Keep the footer extremely clean.
+Include:
+Made by Atabria
+YouTube
+GitHub
+
+Only include the essential links.
+
+Do not add unnecessary navigation, newsletter signup, copyright paragraphs, social media icons for networks that do not exist, or additional information.
+
+INTERACTION AND MOTION
+
+Use subtle, polished interactions throughout the page.
+
+Include:
+
+- Smooth hover effects on project components
+- Project image hover interaction
+- Small button microinteractions
+- Soft reveal animations as sections enter the viewport
+- Subtle movement of decorative doodles
+- Smooth transitions between UI states
+- Gentle link hover states
+- Smooth scrolling
+
+Animations should be short, subtle, and intentional.
+
+Avoid:
+- Large entrance animations
+- Excessive parallax
+- Bouncing elements
+- Fast or flashy transitions
+- Anything that makes the site feel like a tech demo
+
+RESPONSIVE DESIGN
+
+Design the complete experience for:
+
+- Desktop
+- Tablet
+- Mobile
+
+The mobile version should be intentionally designed rather than simply shrinking the desktop layout.
+
+On mobile:
+- Projects should remain the visual priority.
+- Project images should remain prominent.
+- Technology labels should remain readable.
+- YouTube, GitHub, and Live Preview actions should remain easy to access.
+- Navigation should remain simple.
+- Decorative elements should scale down or disappear when necessary.
+
+ACCESSIBILITY AND USABILITY
+
+Prioritize:
+- Strong contrast
+- Clear hierarchy
+- Readable typography
+- Large enough interactive targets
+- Clear link states
+- Semantic structure
+- Keyboard-friendly interactions
+
+The design should feel polished enough to function as a real professional portfolio.
+
+OVERALL ART DIRECTION
+
+Think:
+modern minimal portfolio
+editorial typography
+subtle creative personality
+soft lavender accent
+small hand-drawn doodles
+
+Do NOT think:
+developer dashboard
+SaaS
+cyberpunk
+futuristic technology
+terminal
+AI startup
+overly corporate portfolio
+
+The final result should make Atabria feel like a distinct creative brand rather than simply a website template.
+
